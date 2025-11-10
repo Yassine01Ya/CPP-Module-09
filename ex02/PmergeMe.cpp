@@ -54,7 +54,15 @@ bool PmergeMe::MergeInsert(Container& container, std::string string)
                 return false;
             long        num1   = std::strtol(r_num1.c_str(), NULL, 10);
             std::string r_num2 = get_next_string(stream);
-            if (r_num2.length() == 0)
+			if (r_num2.length() == 0 && pairs_vector.size() == 0)
+			{
+				_deque.clear();
+				_deque.push_back(num1);;
+				_vector.clear();
+				_vector.push_back(num1);
+				return true;
+			}
+            if (r_num2.length() == 0 )
             {
                 left_over = num1;
                 is_odd    = true;
@@ -246,6 +254,7 @@ PmergeMe::PmergeMe(std::string numbers)
         std::cerr << "Error invalid number\n";
         return;
     }
+
     gettimeofday(&now, NULL);
     deque_time = ((now.tv_sec - then.tv_sec) * 1000000) + now.tv_usec - then.tv_usec;
     gettimeofday(&then, NULL);
