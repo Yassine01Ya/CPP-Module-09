@@ -132,25 +132,25 @@ void BitcoinExchange::predict()
 		size_t pipe = line.find('|');
 		if (pipe == std::string::npos)
 		{
-			std::cout << "Error: Bad Input => " << line << std::endl;
+			std::cout << "Error: bad input => " << line << std::endl;
 			continue;
 		}
 		date = line.substr(0, pipe);
 		rate = line.substr(pipe + 1);
 		if (!isValidDate(date))
 		{
-			std::cout << "Error: Bad Date => " << date <<  std::endl;
+			std::cout << "Error: bad date  => " << date <<  std::endl;
 			continue;
 		}
 		if (!isDecimal(rate))
 		{
-			std::cout << "Error: Bad Value => " << rate << std::endl;
+			std::cout << "Error: bad value => " << rate << std::endl;
 			continue;
 		}
 		float value = std::strtof(rate.c_str(), NULL);
 		if (value < 0)
 		{
-			std::cout << "Error: Only positive number allowed"<< std::endl;
+			std::cout << "Error: not a positive number."<< std::endl;
 			continue;
 		}
 		if (value > 1000.0f)
